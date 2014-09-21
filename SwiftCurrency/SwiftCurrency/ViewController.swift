@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var data = NSData(contentsOfFile: filePath!)
         var json: NSArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray
         NSLog("%@", json)
+        NSLog("%@", NSLocalizedString("XDR", tableName: "Currencies", comment: ""))
     }
 
     override func didReceiveMemoryWarning() {

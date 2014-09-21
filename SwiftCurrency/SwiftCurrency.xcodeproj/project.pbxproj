@@ -23,6 +23,7 @@
 		E69D62E519CF019400E8DFF2 /* Flags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69D62E419CF019400E8DFF2 /* Flags.xcassets */; };
 		E69D62E919CF027000E8DFF2 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = E69D62E819CF027000E8DFF2 /* countries.json */; };
 		E6EE705319CF14A700F8EA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE705519CF14A700F8EA35 /* Localizable.strings */; };
+		E6EE705F19CF28F800F8EA35 /* Currencies.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE706119CF28F800F8EA35 /* Currencies.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		E6EE705219CF146D00F8EA35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E6EE705419CF14A700F8EA35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E6EE705719CF14BA00F8EA35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E6EE706019CF28F800F8EA35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Currencies.strings"; sourceTree = "<group>"; };
+		E6EE706219CF28FD00F8EA35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Currencies.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +199,7 @@
 			children = (
 				7D7CFE1E19CEF13100E54589 /* Info.plist */,
 				E6EE705519CF14A700F8EA35 /* Localizable.strings */,
+				E6EE706119CF28F800F8EA35 /* Currencies.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -401,6 +405,7 @@
 				7D7CFE2719CEF13100E54589 /* Images.xcassets in Resources */,
 				E69D62E919CF027000E8DFF2 /* countries.json in Resources */,
 				E69D62E519CF019400E8DFF2 /* Flags.xcassets in Resources */,
+				E6EE705F19CF28F800F8EA35 /* Currencies.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +499,15 @@
 				E6EE705719CF14BA00F8EA35 /* zh-Hant */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E6EE706119CF28F800F8EA35 /* Currencies.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6EE706019CF28F800F8EA35 /* zh-Hant */,
+				E6EE706219CF28FD00F8EA35 /* Base */,
+			);
+			name = Currencies.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
