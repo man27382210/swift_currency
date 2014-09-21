@@ -17,6 +17,8 @@
 		7D7CFE4B19CEF18E00E54589 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7CFE4A19CEF18E00E54589 /* TodayViewController.swift */; };
 		7D7CFE4D19CEF18E00E54589 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7CFE4C19CEF18E00E54589 /* MainInterface.storyboard */; };
 		7D7CFE5019CEF18E00E54589 /* SwiftCurrencyEx.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D7CFE4319CEF18E00E54589 /* SwiftCurrencyEx.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E69D62E019CEF34300E8DFF2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */; };
+		E69D62E219CEF39E00E8DFF2 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,20 @@
 			remoteGlobalIDString = 7D7CFE4219CEF18E00E54589;
 			remoteInfo = SwiftCurrencyEx;
 		};
+		E69D62DC19CEF31800E8DFF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = Alamofire;
+		};
+		E69D62DE19CEF31800E8DFF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = AlamofireTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +69,17 @@
 				7D7CFE5019CEF18E00E54589 /* SwiftCurrencyEx.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E69D62E119CEF34E00E8DFF2 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E69D62E219CEF39E00E8DFF2 /* Alamofire.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -75,6 +102,7 @@
 		7D7CFE4C19CEF18E00E54589 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		7D7CFE5719CEF19A00E54589 /* SwiftCurrency.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwiftCurrency.entitlements; sourceTree = "<group>"; };
 		7D7CFE5819CEF20B00E54589 /* SwiftCurrencyEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwiftCurrencyEx.entitlements; sourceTree = "<group>"; };
+		E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E69D62E019CEF34300E8DFF2 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +135,7 @@
 		7D7CFE1119CEF13100E54589 = {
 			isa = PBXGroup;
 			children = (
+				E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */,
 				7D7CFE1C19CEF13100E54589 /* SwiftCurrency */,
 				7D7CFE3219CEF13100E54589 /* SwiftCurrencyTests */,
 				7D7CFE4719CEF18E00E54589 /* SwiftCurrencyEx */,
@@ -190,6 +220,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E69D62D819CEF31800E8DFF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */,
+				E69D62DF19CEF31800E8DFF2 /* AlamofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,6 +240,7 @@
 				7D7CFE1719CEF13100E54589 /* Frameworks */,
 				7D7CFE1819CEF13100E54589 /* Resources */,
 				7D7CFE5619CEF18E00E54589 /* Embed App Extensions */,
+				E69D62E119CEF34E00E8DFF2 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -292,6 +332,12 @@
 			mainGroup = 7D7CFE1119CEF13100E54589;
 			productRefGroup = 7D7CFE1B19CEF13100E54589 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E69D62D819CEF31800E8DFF2 /* Products */;
+					ProjectRef = E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7D7CFE1919CEF13100E54589 /* SwiftCurrency */,
@@ -300,6 +346,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = E69D62DC19CEF31800E8DFF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E69D62DF19CEF31800E8DFF2 /* AlamofireTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlamofireTests.xctest;
+			remoteRef = E69D62DE19CEF31800E8DFF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7D7CFE1819CEF13100E54589 /* Resources */ = {
@@ -587,6 +650,7 @@
 				7D7CFE3B19CEF13100E54589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D7CFE3C19CEF13100E54589 /* Build configuration list for PBXNativeTarget "SwiftCurrencyTests" */ = {
 			isa = XCConfigurationList;
@@ -595,6 +659,7 @@
 				7D7CFE3E19CEF13100E54589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D7CFE5319CEF18E00E54589 /* Build configuration list for PBXNativeTarget "SwiftCurrencyEx" */ = {
 			isa = XCConfigurationList;
@@ -603,6 +668,7 @@
 				7D7CFE5519CEF18E00E54589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
