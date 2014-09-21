@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SwiftCurrency
+
+  Created by Teaualune Tseng on 2014/9/21.
+  Copyright (c) 2014年 corrugater. All rights reserved.
+*/
+
+"navigation_title" = "Currencies";
+
+"navigation_item_about" = "About";
+
+"table_section_title_main" = "Main";
+
+"table_section_title_other" = "Exchanged";
+
+"twd_full" = "New Taiwan Dollar";

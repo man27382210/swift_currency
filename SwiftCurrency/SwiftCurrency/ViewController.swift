@@ -17,6 +17,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshController = UIRefreshControl()
         tableCurrecny.addSubview(refreshController)
         refreshController.addTarget(self, action: "tableRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        var filePath = NSBundle.mainBundle().pathForResource("countries", ofType: "json")
+        var data = NSData(contentsOfFile: filePath!)
+        var json: NSArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray
+        NSLog("%@", json)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,17 +51,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 0){
-            return "Main"
+        if (section == 0) {
+            return NSLocalizedString("table_section_title_main", comment: "")
+        } else {
+            return NSLocalizedString("table_section_title_other", comment: "")
         }
-        return "Other   "
     }
-    func tableRefresh(){
+    func tableRefresh() {
         refreshController.endRefreshing()
         tableCurrecny.reloadData()
     }
     
-    @IBAction func closeFromInfo(sender:UIStoryboardSegue){
+    @IBAction func closeFromInfo(sender:UIStoryboardSegue) {
         
     }
 }

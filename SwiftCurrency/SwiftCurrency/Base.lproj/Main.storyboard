@@ -81,11 +81,11 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-V8-Zo8">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="79z-IT-ShB">
+                                    <navigationItem title="Currencies" id="79z-IT-ShB">
                                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ceY-CR-Coe"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Info" id="dhQ-vy-2wm">
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="dhQ-vy-2wm">
                                             <connections>
-                                                <segue destination="3ZB-hM-VCB" kind="modal" id="fQY-8g-QWe"/>
+                                                <segue destination="3ZB-hM-VCB" kind="show" id="fQY-8g-QWe"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -146,8 +146,8 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VY-Eg-i6a">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="v0i-Wb-8hK">
-                                        <barButtonItem key="leftBarButtonItem" title="close" id="dcS-lu-Gi8">
+                                    <navigationItem title="About" id="v0i-Wb-8hK">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="dcS-lu-Gi8">
                                             <connections>
                                                 <segue destination="hab-Ru-RNc" kind="unwind" unwindAction="closeFromInfo:" id="vQD-Yp-jRJ"/>
                                             </connections>
