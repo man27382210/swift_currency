@@ -8,24 +8,31 @@
 
 import Foundation
 
-public class SCCurrency: NSObject {
-    private var _code: NSString
+public class SCCurrency {
+    private var _code: String
+    private var _rate: Float = 1.0
 
-    init(aCode: NSString) {
+    init(aCode: String) {
         _code = aCode.uppercaseString
-        super.init()
     }
-    
-    public func code(lower: Bool = false) -> NSString {
+
+    public func code(lower: Bool = false) -> String {
         return lower ? _code.lowercaseString : _code
     }
 
-    public var imageName: NSString {
+    public var imageName: String {
         return code(lower: true) + ".png"
     }
 
-    public var fullName: NSString {
+    public var fullName: String {
         return NSLocalizedString(_code, tableName: "Currencies", comment: "")
     }
 
+    public var rate: Float {
+        return _rate
+    }
+
+    public func rate(r: Float) -> Void {
+        _rate = r
+    }
 }

@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        SCModel.getInstance
+        SCModel.getInstance.selected = SCModel.getCurrency("TWD")
+        SCModel.getInstance.comparings.append(SCModel.getCurrency("USD")!)
+        SCModel.getInstance.comparings.append(SCModel.getCurrency("JPY")!)
         return true
     }
 

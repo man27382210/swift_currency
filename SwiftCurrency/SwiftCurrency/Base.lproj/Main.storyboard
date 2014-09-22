@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="72" width="600" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellMainCurrency" rowHeight="80" id="QiC-MM-fuh" customClass="SCCurrencyCell" customModule="SwiftCurrency" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellMainCurrency" rowHeight="80" id="QiC-MM-fuh" customClass="SCMainCurrencyCell" customModule="SwiftCurrency" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QiC-MM-fuh" id="2Xb-8c-ZjW">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -34,7 +34,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NTD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEh-96-Tft">
-                                                    <rect key="frame" x="98" y="29" width="50" height="20.5"/>
+                                                    <rect key="frame" x="98" y="29" width="50" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="har-8l-ggE"/>
                                                     </constraints>
@@ -48,10 +48,10 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yY5-L9-gsg">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.0" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yY5-L9-gsg">
                                                     <rect key="frame" x="153" y="24" width="399" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -68,9 +68,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="codeTextLabel" destination="xEh-96-Tft" id="XqK-YV-NB6"/>
-                                            <outlet property="flagImageView" destination="g5I-3g-M8k" id="efv-LZ-Ei3"/>
-                                            <outlet property="fullNameTextLabel" destination="pUo-I2-Bqc" id="V31-g0-YaM"/>
+                                            <outlet property="codeTextLabel" destination="xEh-96-Tft" id="fXK-03-VPO"/>
+                                            <outlet property="flagImageView" destination="g5I-3g-M8k" id="4dO-gv-inG"/>
+                                            <outlet property="fullNameTextLabel" destination="pUo-I2-Bqc" id="ZyJ-uz-cwI"/>
+                                            <outlet property="rateInput" destination="yY5-L9-gsg" id="jBW-Dn-TWV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellShowCurrency" rowHeight="80" id="Pch-fo-UFb" customClass="SCCurrencyCell" customModule="SwiftCurrency" customModuleProvider="target">
@@ -86,7 +87,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bna-9Q-pVN">
-                                                    <rect key="frame" x="98" y="29.5" width="50" height="20.5"/>
+                                                    <rect key="frame" x="98" y="29" width="50" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="viq-wu-adv"/>
                                                     </constraints>
@@ -95,7 +96,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69K-jl-rLQ">
-                                                    <rect key="frame" x="158" y="29.5" width="394" height="20.5"/>
+                                                    <rect key="frame" x="158" y="29" width="394" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -124,6 +125,7 @@
                                             <outlet property="codeTextLabel" destination="Bna-9Q-pVN" id="DUw-eH-d50"/>
                                             <outlet property="flagImageView" destination="NKY-iz-rxv" id="EZx-Vm-Ff7"/>
                                             <outlet property="fullNameTextLabel" destination="DWk-hl-Lkd" id="sdL-Sf-Kpl"/>
+                                            <outlet property="rateLabel" destination="69K-jl-rLQ" id="YR1-8D-kOt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

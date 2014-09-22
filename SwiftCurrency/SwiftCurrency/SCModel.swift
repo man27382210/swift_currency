@@ -8,30 +8,27 @@
 
 import Foundation
 
-public class SCModel: NSObject {
+public class SCModel {
 
-    public let currencies: NSArray
+    public let currencies: [SCCurrency]
     public var selected: SCCurrency?
-    public let comparings: NSMutableArray
+    public var comparings: [SCCurrency] = []
 
-    private override init() {
+    private init() {
         let filePath = NSBundle.mainBundle().pathForResource("countries", ofType: "json")
         let data = NSData(contentsOfFile: filePath!)
-        let json: NSArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray
-        let ccy = NSMutableArray(capacity: json.count)
-        for j in json {
-            ccy.addObject(SCCurrency(aCode: j as NSString))
-        }
-        self.currencies = ccy.copy() as NSArray
-        self.comparings = NSMutableArray(capacity: self.currencies.count)
-        super.init()
+        let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as Array<String>
+        self.currencies = json.map({
+            (n: String) -> SCCurrency in
+            return SCCurrency(aCode: n)
+        })
     }
 
     class var getInstance: SCModel {
         return singleton
     }
     
-    class func getCurrency(code: NSString) -> SCCurrency? {
+    class func getCurrency(code: String) -> SCCurrency? {
         var ccy: SCCurrency? = nil
         for _c in singleton.currencies {
             let c = _c as SCCurrency
@@ -42,6 +39,24 @@ public class SCModel: NSObject {
         }
         return ccy
     }
+
+    class func update(callback: (() -> Void)) {
+        if singleton.selected == nil {
+            return
+        }
+        SCAPI.getData(singleton.selected!, comparings: singleton.comparings, callback: {
+            (results) in
+            singleton.selected!.rate(1.0)
+            if results != nil {
+                for var i = 0; i < results!.count; ++i {
+                    let rate: NSString = (results![i] as NSDictionary)["Rate"] as NSString
+                    singleton.comparings[i].rate(rate.floatValue)
+                }
+            }
+            callback()
+        })
+    }
+
 }
 
 let singleton = SCModel()

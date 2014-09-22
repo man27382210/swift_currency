@@ -9,25 +9,27 @@
 import Foundation
 import Alamofire
 
-let api = "https://query.yahooapis.com/v1/public/yql"
-//let queryTemplate = "select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22SHPUSD%22%2C%22GBPUSD%22)"
-let queryTemplate = "select * from yahoo.finance.xchange where pair in ({{pairs}})"
+let path = "https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q="
 
 public class SCAPI {
-    class func getData(main: SCCurrency, comparings: Array<SCCurrency>, callback: ((results: NSArray) -> Void)!) {
-        var params = [
-            "q": self.queryStringFromData(main, comparings: comparings),
-            "format": "json",
-            "env": "store://datatables.org/alltableswithkeys"
-        ] as [String: AnyObject]
-        Alamofire.request(.GET, api, parameters: params).response {(req, res, _data, err) in
-            let data: NSData = _data as NSData!
-            let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
-            let results: NSArray = ((json["query"] as NSDictionary)["results"] as NSDictionary)["rate"] as NSArray
-            callback(results: results)
+    class func getData(main: SCCurrency, comparings: Array<SCCurrency>, callback: ((results: NSArray?) -> Void)!) {
+        if comparings.count == 0 {
+            callback(results: nil)
+            return
+        }
+        let api = path + self.queryStringFromData(main, comparings: comparings)
+        Alamofire.request(.GET, api).response {(req, res, _data, err) in
+            if err != nil {
+                callback(results: nil)
+            } else {
+                let data: NSData = _data as NSData!
+                let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
+                let results: NSArray = ((json["query"] as NSDictionary)["results"] as NSDictionary)["rate"] as NSArray
+                callback(results: results)
+            }
         }
     }
-    
+
     private class func queryStringFromData(main: SCCurrency, comparings: Array<SCCurrency>) -> NSString {
         var codes = ""
         if comparings.count > 0 {
@@ -36,6 +38,6 @@ public class SCAPI {
                 codes += ", \"" + main.code() + comparings[i].code() + "\""
             }
         }
-        return "select * from yahoo.finance.xchange where pair in (" + codes + ")"
+        return ("select * from yahoo.finance.xchange where pair in (" + codes + ")").stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!
     }
 }
