@@ -30,6 +30,18 @@ public class SCModel: NSObject {
     class var getInstance: SCModel {
         return singleton
     }
+    
+    class func getCurrency(code: NSString) -> SCCurrency? {
+        var ccy: SCCurrency? = nil
+        for _c in singleton.currencies {
+            let c = _c as SCCurrency
+            if c.code() == code.uppercaseString {
+                ccy = c
+                break
+            }
+        }
+        return ccy
+    }
 }
 
 let singleton = SCModel()

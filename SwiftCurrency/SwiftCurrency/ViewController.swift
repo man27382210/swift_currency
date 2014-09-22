@@ -18,6 +18,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshControl = UIRefreshControl()
         currencyTable.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "tableRefresh", forControlEvents: UIControlEvents.ValueChanged)
+
+        // test
+        SCAPI.getData(SCModel.getCurrency("TWD")!, comparings: [
+            SCModel.getCurrency("USD")!,
+            SCModel.getCurrency("JPY")!
+        ], {(results) in
+            NSLog("%@", results)
+        })
     }
 
     override func didReceiveMemoryWarning() {

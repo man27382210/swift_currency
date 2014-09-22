@@ -27,6 +27,7 @@
 		E6EE707019CFBBA600F8EA35 /* SCCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */; };
 		E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707119CFC4E900F8EA35 /* SCModel.swift */; };
 		E6EE707819CFD27600F8EA35 /* SCCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */; };
+		E6EE707A19CFE50B00F8EA35 /* SCAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707919CFE50B00F8EA35 /* SCAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCurrency.swift; sourceTree = "<group>"; };
 		E6EE707119CFC4E900F8EA35 /* SCModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCModel.swift; sourceTree = "<group>"; };
 		E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCurrencyCell.swift; sourceTree = "<group>"; };
+		E6EE707919CFE50B00F8EA35 /* SCAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 			children = (
 				E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */,
 				E6EE707119CFC4E900F8EA35 /* SCModel.swift */,
+				E6EE707919CFE50B00F8EA35 /* SCAPI.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			files = (
 				E6EE707019CFBBA600F8EA35 /* SCCurrency.swift in Sources */,
 				E6EE707819CFD27600F8EA35 /* SCCurrencyCell.swift in Sources */,
+				E6EE707A19CFE50B00F8EA35 /* SCAPI.swift in Sources */,
 				7D7CFE2219CEF13100E54589 /* ViewController.swift in Sources */,
 				E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */,
 				7DFF128E19CF0CB4004DD720 /* InfoViewController.swift in Sources */,
