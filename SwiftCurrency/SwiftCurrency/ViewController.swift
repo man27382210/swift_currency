@@ -42,6 +42,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell: SCCurrencyCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCCurrencyCell
         let ccy: SCCurrency = SCModel.getInstance.currencies[indexPath.item] as SCCurrency
         cell.flagImageView.image = UIImage(named: ccy.imageName)
+        cell.codeTextLabel.text = ccy.code()
+        cell.fullNameTextLabel.text = ccy.fullName
         
         return cell
     }

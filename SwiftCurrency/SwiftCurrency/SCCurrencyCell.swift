@@ -10,4 +10,6 @@ import UIKit
 
 class SCCurrencyCell: UITableViewCell {
     @IBOutlet var flagImageView: UIImageView!
+    @IBOutlet var codeTextLabel: UILabel!
+    @IBOutlet var fullNameTextLabel: UILabel!
 }

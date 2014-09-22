@@ -16,13 +16,12 @@ public class SCCurrency: NSObject {
         super.init()
     }
     
-    public func code(_lower: Bool?) -> NSString {
-        let lower = (_lower != nil) ? _lower! : false
+    public func code(lower: Bool = false) -> NSString {
         return lower ? _code.lowercaseString : _code
     }
 
     public var imageName: NSString {
-        return code(true) + ".png"
+        return code(lower: true) + ".png"
     }
 
     public var fullName: NSString {
