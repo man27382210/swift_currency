@@ -24,6 +24,9 @@
 		E69D62E919CF027000E8DFF2 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = E69D62E819CF027000E8DFF2 /* countries.json */; };
 		E6EE705319CF14A700F8EA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE705519CF14A700F8EA35 /* Localizable.strings */; };
 		E6EE705F19CF28F800F8EA35 /* Currencies.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6EE706119CF28F800F8EA35 /* Currencies.strings */; };
+		E6EE707019CFBBA600F8EA35 /* SCCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */; };
+		E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707119CFC4E900F8EA35 /* SCModel.swift */; };
+		E6EE707819CFD27600F8EA35 /* SCCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +129,9 @@
 		E6EE705719CF14BA00F8EA35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E6EE706019CF28F800F8EA35 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Currencies.strings"; sourceTree = "<group>"; };
 		E6EE706219CF28FD00F8EA35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Currencies.strings; sourceTree = "<group>"; };
+		E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCurrency.swift; sourceTree = "<group>"; };
+		E6EE707119CFC4E900F8EA35 /* SCModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCModel.swift; sourceTree = "<group>"; };
+		E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCurrencyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +186,8 @@
 		7D7CFE1C19CEF13100E54589 /* SwiftCurrency */ = {
 			isa = PBXGroup;
 			children = (
+				E6EE707619CFD26400F8EA35 /* view */,
+				E6EE706C19CFBAEE00F8EA35 /* model */,
 				7D7CFE5719CEF19A00E54589 /* SwiftCurrency.entitlements */,
 				7D7CFE1F19CEF13100E54589 /* AppDelegate.swift */,
 				7D7CFE2119CEF13100E54589 /* ViewController.swift */,
@@ -257,6 +265,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E6EE706C19CFBAEE00F8EA35 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				E6EE706F19CFBBA600F8EA35 /* SCCurrency.swift */,
+				E6EE707119CFC4E900F8EA35 /* SCModel.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		E6EE707619CFD26400F8EA35 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -323,6 +348,7 @@
 		7D7CFE1219CEF13100E54589 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SC;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = corrugater;
 				TargetAttributes = {
@@ -431,7 +457,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6EE707019CFBBA600F8EA35 /* SCCurrency.swift in Sources */,
+				E6EE707819CFD27600F8EA35 /* SCCurrencyCell.swift in Sources */,
 				7D7CFE2219CEF13100E54589 /* ViewController.swift in Sources */,
+				E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */,
 				7DFF128E19CF0CB4004DD720 /* InfoViewController.swift in Sources */,
 				7D7CFE2019CEF13100E54589 /* AppDelegate.swift in Sources */,
 			);
