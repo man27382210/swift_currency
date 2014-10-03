@@ -10,7 +10,7 @@ import Foundation
 
 public class SCCurrency {
     private var _code: String
-    private var _rate: Float = 1.0
+    private var _rate: Double = 1.0
 
     init(aCode: String) {
         _code = aCode.uppercaseString
@@ -28,11 +28,11 @@ public class SCCurrency {
         return NSLocalizedString(_code, tableName: "Currencies", comment: "")
     }
 
-    public var rate: Float {
+    public var rate: Double {
         return _rate
     }
 
-    public func rate(r: Float) -> Void {
+    public func rate(r: Double) -> Void {
         _rate = r
     }
 }

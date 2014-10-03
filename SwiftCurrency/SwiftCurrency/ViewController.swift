@@ -8,10 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet private var currencyTable: UITableView!
-    private var refreshControl: UIRefreshControl!
+    @IBOutlet private var currencyTextField: UITextField!
+
+    @IBOutlet private var mainCurrencyFlagImageView: UIImageView!
+    @IBOutlet private var mainCurrencyCodeTextLabel: UILabel!
+    @IBOutlet private var mainCurrencyFullNameTextLabel: UILabel!
+
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
 
     private let editText = NSLocalizedString("Edit", comment: "Edit")
     private let aboutText = NSLocalizedString("About", comment: "About")
@@ -24,10 +30,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: editText, style: UIBarButtonItemStyle.Plain, target: self, action: "toggleEdit:")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: aboutText, style: UIBarButtonItemStyle.Plain, target: self, action: "showAbout:")
 
-        refreshControl = UIRefreshControl()
         currencyTable.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "update", forControlEvents: UIControlEvents.ValueChanged)
 
+        let keyboardToolbar = UIToolbar()
+        let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        fixedSpaceItem.width = 30.0
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.setItems([
+            UIBarButtonItem(title: "1.0", style: UIBarButtonItemStyle.Bordered, target: self, action: "resetTextNumber:"),
+            fixedSpaceItem,
+            UIBarButtonItem(title: " \u{2022} ", style: UIBarButtonItemStyle.Bordered, target: self, action: "addDot:"),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: doneText, style: UIBarButtonItemStyle.Bordered, target: self, action: "dismissKeyboard:")
+        ], animated: false)
+        self.currencyTextField.inputAccessoryView = keyboardToolbar
+
+        setMainCurrency()
         update()
     }
 
@@ -54,10 +73,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cellIdentifier: NSString = "CellShowCurrency"
         let cell: SCCurrencyCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCCurrencyCell
         let ccy = SCModel.getInstance.comparings[indexPath.row]
+        let rateValue = SCModel.getInstance.selected == nil ? ccy.rate : ccy.rate * SCModel.getInstance.selected!.rate
         cell.flagImageView.image = UIImage(named: ccy.imageName)
         cell.codeTextLabel.text = ccy.code()
         cell.fullNameTextLabel.text = ccy.fullName
-        cell.rateLabel!.text = NSString(format: "%f", ccy.rate)
+        cell.rateLabel!.text = NSString(format: "%f", rateValue)
         return cell
     }
 
@@ -66,11 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let key: NSString = "table_section_title_other"
-        return NSLocalizedString(key, comment: "")
-    }
-    
-    @IBAction func closeFromInfo(sender:UIStoryboardSegue) {
+        return NSLocalizedString("table_section_title_other", comment: "")
     }
 
     func update() {
@@ -94,4 +110,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.performSegueWithIdentifier("ShowAboutSegue", sender: self)
     }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+
+    func dismissKeyboard(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
+
+    func addDot(sender: AnyObject) {
+        let text = self.currencyTextField.text
+        if text.rangeOfString(".") == nil {
+            self.currencyTextField.text = self.currencyTextField.text + "."
+        }
+    }
+
+    func resetTextNumber(sender: AnyObject) {
+        self.currencyTextField.text = "1.0"
+        self.updateCurrencyValue(self.currencyTextField.text)
+        self.dismissKeyboard(sender)
+    }
+
+    @IBAction func textFieldValueDidChanged(sender: UITextField) {
+        self.updateCurrencyValue(sender.text)
+    }
+
+    func updateCurrencyValue(text: NSString) {
+        let ccy = text.doubleValue
+        let selected = SCModel.getInstance.selected
+        if selected != nil {
+            selected!.rate(ccy)
+            self.currencyTable.reloadData()
+        }
+    }
+
+    func setMainCurrency() {
+        let selected = SCModel.getInstance.selected
+        if selected != nil {
+            self.currencyTextField.text = "1.0"
+            self.mainCurrencyFlagImageView.image = UIImage(named: selected!.imageName)
+            self.mainCurrencyCodeTextLabel.text = selected!.code()
+            self.mainCurrencyFullNameTextLabel.text = selected!.fullName
+        }
+    }
 }

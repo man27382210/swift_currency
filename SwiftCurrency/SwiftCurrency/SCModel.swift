@@ -49,7 +49,7 @@ public class SCModel {
             if results != nil {
                 for var i = 0; i < results!.count; ++i {
                     let rate: NSString = (results![i] as NSDictionary)["Rate"] as NSString
-                    singleton.comparings[i].rate(rate.floatValue)
+                    singleton.comparings[i].rate(rate.doubleValue)
                 }
             }
             callback()
