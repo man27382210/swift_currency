@@ -9,12 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet var currencyTable: UITableView!
+
+    @IBOutlet private var currencyTable: UITableView!
     private var refreshControl: UIRefreshControl!
+
+    private let editText = NSLocalizedString("Edit", comment: "Edit")
+    private let aboutText = NSLocalizedString("About", comment: "About")
+    private let doneText = NSLocalizedString("Done", comment: "Done")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        self.navigationItem.title = NSLocalizedString("navigation_title", comment: "navigation_title")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: editText, style: UIBarButtonItemStyle.Plain, target: self, action: "toggleEdit:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: aboutText, style: UIBarButtonItemStyle.Plain, target: self, action: "showAbout:")
+
         refreshControl = UIRefreshControl()
         currencyTable.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "update", forControlEvents: UIControlEvents.ValueChanged)
@@ -32,12 +41,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return SCModel.getInstance.comparings.count
+        let count = SCModel.getInstance.comparings.count
+        if self.currencyTable.editing {
+            return count + 1
+        } else {
+            return count
+        }
 
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cellIdentifier: NSString = "CellShowCurrency"
+        let cellIdentifier: NSString = "CellShowCurrency"
         let cell: SCCurrencyCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCCurrencyCell
         let ccy = SCModel.getInstance.comparings[indexPath.row]
         cell.flagImageView.image = UIImage(named: ccy.imageName)
@@ -57,19 +71,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func closeFromInfo(sender:UIStoryboardSegue) {
-        
     }
 
     func update() {
-        SCModel.update({
+        SCModel.update {
             self.currencyTable.reloadData()
             self.refreshControl.endRefreshing()
-        })
+        }
     }
 
     func rateInputValue() -> Float {
         let rateInputCell: SCMainCurrencyCell = self.currencyTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as SCMainCurrencyCell!
         return (rateInputCell.rateInput.text as NSString).floatValue
+    }
+
+    func toggleEdit(sender: AnyObject) {
+        self.currencyTable.setEditing(!self.currencyTable.editing, animated: true)
+        self.navigationItem.leftBarButtonItem?.title = self.currencyTable.editing ? doneText : editText
+    }
+
+    func showAbout(sender: AnyObject) {
+        self.performSegueWithIdentifier("ShowAboutSegue", sender: self)
     }
 
 }

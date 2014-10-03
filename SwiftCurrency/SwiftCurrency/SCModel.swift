@@ -44,8 +44,7 @@ public class SCModel {
         if singleton.selected == nil {
             return
         }
-        SCAPI.getData(singleton.selected!, comparings: singleton.comparings, callback: {
-            (results) in
+        SCAPI.getData(singleton.selected!, comparings: singleton.comparings, callback: {(results) in
             singleton.selected!.rate(1.0)
             if results != nil {
                 for var i = 0; i < results!.count; ++i {

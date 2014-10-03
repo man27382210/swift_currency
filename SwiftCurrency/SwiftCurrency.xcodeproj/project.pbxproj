@@ -17,7 +17,6 @@
 		7D7CFE4B19CEF18E00E54589 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7CFE4A19CEF18E00E54589 /* TodayViewController.swift */; };
 		7D7CFE4D19CEF18E00E54589 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7CFE4C19CEF18E00E54589 /* MainInterface.storyboard */; };
 		7D7CFE5019CEF18E00E54589 /* SwiftCurrencyEx.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D7CFE4319CEF18E00E54589 /* SwiftCurrencyEx.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7DFF128E19CF0CB4004DD720 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFF128D19CF0CB4004DD720 /* InfoViewController.swift */; };
 		E669A0A619D023D200D83795 /* SCMainCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E669A0A519D023D200D83795 /* SCMainCurrencyCell.swift */; };
 		E69D62E019CEF34300E8DFF2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */; };
 		E69D62E219CEF39E00E8DFF2 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E69D62DD19CEF31800E8DFF2 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,6 +28,7 @@
 		E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707119CFC4E900F8EA35 /* SCModel.swift */; };
 		E6EE707819CFD27600F8EA35 /* SCCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */; };
 		E6EE707A19CFE50B00F8EA35 /* SCAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EE707919CFE50B00F8EA35 /* SCAPI.swift */; };
+		E6FDC22F19DE437900489328 /* SCAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FDC22E19DE437900489328 /* SCAboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +121,6 @@
 		7D7CFE4C19CEF18E00E54589 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		7D7CFE5719CEF19A00E54589 /* SwiftCurrency.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwiftCurrency.entitlements; sourceTree = "<group>"; };
 		7D7CFE5819CEF20B00E54589 /* SwiftCurrencyEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwiftCurrencyEx.entitlements; sourceTree = "<group>"; };
-		7DFF128D19CF0CB4004DD720 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E669A0A519D023D200D83795 /* SCMainCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMainCurrencyCell.swift; sourceTree = "<group>"; };
 		E69D62D719CEF31800E8DFF2 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		E69D62E419CF019400E8DFF2 /* Flags.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Flags.xcassets; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		E6EE707119CFC4E900F8EA35 /* SCModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCModel.swift; sourceTree = "<group>"; };
 		E6EE707719CFD27600F8EA35 /* SCCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCurrencyCell.swift; sourceTree = "<group>"; };
 		E6EE707919CFE50B00F8EA35 /* SCAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCAPI.swift; sourceTree = "<group>"; };
+		E6FDC22E19DE437900489328 /* SCAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCAboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,13 +195,13 @@
 				7D7CFE5719CEF19A00E54589 /* SwiftCurrency.entitlements */,
 				7D7CFE1F19CEF13100E54589 /* AppDelegate.swift */,
 				7D7CFE2119CEF13100E54589 /* ViewController.swift */,
-				7DFF128D19CF0CB4004DD720 /* InfoViewController.swift */,
 				7D7CFE2319CEF13100E54589 /* Main.storyboard */,
 				7D7CFE2619CEF13100E54589 /* Images.xcassets */,
 				7D7CFE2819CEF13100E54589 /* LaunchScreen.xib */,
 				7D7CFE1D19CEF13100E54589 /* Supporting Files */,
 				E69D62E419CF019400E8DFF2 /* Flags.xcassets */,
 				E69D62E819CF027000E8DFF2 /* countries.json */,
+				E6FDC22E19DE437900489328 /* SCAboutViewController.swift */,
 			);
 			path = SwiftCurrency;
 			sourceTree = "<group>";
@@ -469,7 +469,7 @@
 				E6EE707A19CFE50B00F8EA35 /* SCAPI.swift in Sources */,
 				7D7CFE2219CEF13100E54589 /* ViewController.swift in Sources */,
 				E6EE707219CFC4E900F8EA35 /* SCModel.swift in Sources */,
-				7DFF128E19CF0CB4004DD720 /* InfoViewController.swift in Sources */,
+				E6FDC22F19DE437900489328 /* SCAboutViewController.swift in Sources */,
 				7D7CFE2019CEF13100E54589 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
