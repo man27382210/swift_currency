@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SCCandidatesTableDelegate {
 
     @IBOutlet private var currencyTable: UITableView!
     @IBOutlet private var currencyTextField: UITextField!
@@ -55,40 +55,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = SCModel.getInstance.comparings.count
-        if self.currencyTable.editing {
-            return count + 1
-        } else {
-            return count
-        }
-
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier: NSString = "CellShowCurrency"
-        let cell: SCCurrencyCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCCurrencyCell
-        let ccy = SCModel.getInstance.comparings[indexPath.row]
-        let rateValue = SCModel.getInstance.selected == nil ? ccy.rate : ccy.rate * SCModel.getInstance.selected!.rate
-        cell.flagImageView.image = UIImage(named: ccy.imageName)
-        cell.codeTextLabel.text = ccy.code()
-        cell.fullNameTextLabel.text = ccy.fullName
-        cell.rateLabel!.text = NSString(format: "%f", rateValue)
-        return cell
-    }
-
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return NSLocalizedString("table_section_title_other", comment: "")
-    }
-
     func update() {
         SCModel.update {
             self.currencyTable.reloadData()
@@ -104,6 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func toggleEdit(sender: AnyObject) {
         self.currencyTable.setEditing(!self.currencyTable.editing, animated: true)
         self.navigationItem.leftBarButtonItem?.title = self.currencyTable.editing ? doneText : editText
+        self.currencyTable.reloadRowsAtIndexPaths([NSIndexPath(forRow: SCModel.getInstance.comparings.count, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
     func showAbout(sender: AnyObject) {
@@ -136,6 +103,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.updateCurrencyValue(sender.text)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowPlusSegue" {
+            let vc = segue.destinationViewController as SCCandidatesViewController
+            vc.delegate = self
+        }
+    }
+
     func updateCurrencyValue(text: NSString) {
         let ccy = text.doubleValue
         let selected = SCModel.getInstance.selected
@@ -152,6 +126,85 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.mainCurrencyFlagImageView.image = UIImage(named: selected!.imageName)
             self.mainCurrencyCodeTextLabel.text = selected!.code()
             self.mainCurrencyFullNameTextLabel.text = selected!.fullName
+        }
+    }
+
+    func setupCurrencyCell(index: Int) -> UITableViewCell {
+        let cellIdentifier: NSString = "CellShowCurrency"
+        let cell: SCCurrencyCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCCurrencyCell
+        let ccy = SCModel.getInstance.comparings[index]
+        let rateValue = SCModel.getInstance.selected == nil ? ccy.rate : ccy.rate * SCModel.getInstance.selected!.rate
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.flagImageView.image = UIImage(named: ccy.imageName)
+        cell.codeTextLabel.text = ccy.code()
+        cell.fullNameTextLabel.text = ccy.fullName
+        cell.rateLabel!.text = NSString(format: "%f", rateValue)
+        return cell
+    }
+
+    func setupPlusCell() -> UITableViewCell {
+        let cellIdentifier: NSString = "CellPlus"
+        let cell: SCPlusCell! = currencyTable.dequeueReusableCellWithIdentifier(cellIdentifier) as SCPlusCell
+        cell.titleLabel.text = NSLocalizedString("table_plus", comment: "table plus text")
+        cell.titleLabel.hidden = !self.currencyTable.editing
+        return cell
+    }
+
+    func candidateDidChanged() {
+        self.currencyTable.reloadData()
+    }
+
+// pragma mark - UITableView delegate and dataSource
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return SCModel.getInstance.comparings.count + 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == SCModel.getInstance.comparings.count {
+            return setupPlusCell()
+        } else {
+            return setupCurrencyCell(indexPath.row)
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_section_title_other", comment: "")
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if self.currencyTable.editing && indexPath.row < SCModel.getInstance.comparings.count {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        SCModel.getInstance.comparings.removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == SCModel.getInstance.comparings.count {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.performSegueWithIdentifier("ShowPlusSegue", sender: self)
+        }
+    }
+
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if self.currencyTable.editing && indexPath.row == SCModel.getInstance.comparings.count {
+            return indexPath
+        } else {
+            return nil
         }
     }
 }

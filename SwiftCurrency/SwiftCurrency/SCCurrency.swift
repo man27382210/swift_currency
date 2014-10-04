@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SCCurrency {
+public class SCCurrency: Equatable {
     private var _code: String
     private var _rate: Double = 1.0
 
@@ -35,4 +35,8 @@ public class SCCurrency {
     public func rate(r: Double) -> Void {
         _rate = r
     }
+}
+
+public func ==(lhs: SCCurrency, rhs: SCCurrency) -> Bool {
+    return lhs._code == rhs._code
 }
